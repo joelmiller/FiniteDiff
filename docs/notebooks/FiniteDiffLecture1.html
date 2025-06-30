@@ -439,6 +439,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">1.3. Returning to the PDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">1.4. Practice Problems</a></li>
 </ul>
             </nav>
         </div>
@@ -461,7 +462,7 @@ u_t(x,t) = K u_{xx}(x,t)
 We will use the initial condition</p>
 <div class="math notranslate nohighlight">
 \[
-u(x,0) = g(x) = \frac{100x}{L} + 10\sin\left(\frac{4\pi x}{L}\right)
+u(x,0) = g(x) = \frac{100x}{L} + 100\sin\left(\frac{4\pi x}{L}\right)
 \]</div>
 <p>and boundary conditions</p>
 <div class="amsmath math notranslate nohighlight">
@@ -469,7 +470,7 @@ u(x,0) = g(x) = \frac{100x}{L} + 10\sin\left(\frac{4\pi x}{L}\right)
 u(0,t) &amp;= 0\\
 u(L,t) &amp;= 100
 \end{align*}\]</div>
-<p>When we need to use specific values, we will take <span class="math notranslate nohighlight">\(K=4\)</span> and <span class="math notranslate nohighlight">\(L=5\)</span>.</p>
+<p>When we need to use specific values, we will take <span class="math notranslate nohighlight">\(K=0.01\)</span> and <span class="math notranslate nohighlight">\(L=5\)</span>.</p>
 <section id="discretizing-space">
 <h2><span class="section-number">1.1. </span>Discretizing space<a class="headerlink" href="#discretizing-space" title="Link to this heading">#</a></h2>
 <p>We will attempt to find the values</p>
@@ -794,7 +795,7 @@ u_i^{j+1} &amp;= u_i^j + \frac{\Delta t}{(\Delta x)^2} \left(u_{i+1}^j - 2 u_i^j
 \end{align*}\]</div>
 <p>Our initial condition gives us <span class="math notranslate nohighlight">\(u_i^0\)</span> for all <span class="math notranslate nohighlight">\(i=0,\ldots, N\)</span>.  From this and the equation above, we can deduce an approximation for <span class="math notranslate nohighlight">\(u_i^{1}\)</span> for all <span class="math notranslate nohighlight">\(i=1,\ldots, N-1\)</span>.  The boundary conditions give us the values for <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>.  Note that due to our constant boundary conditions, we can use the equation <span class="math notranslate nohighlight">\(u_0^1=u_0^0\)</span> and <span class="math notranslate nohighlight">\(u_N^1=u_N^0\)</span>.</p>
 <p>Once we have <span class="math notranslate nohighlight">\(u_i^1\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, we can repeat, getting a new approximation for <span class="math notranslate nohighlight">\(u_i^2\)</span>.  Iterating forward we effectively implement Euler’s method in time.</p>
-<p>For clarity, we will alter our notation to use <span class="math notranslate nohighlight">\(U_i^j\)</span> to represent the approximation to <span class="math notranslate nohighlight">\(u_i^j\)</span>.  For simplification, we will define <span class="math notranslate nohighlight">\(r=\Delta t/(\Delta x)^2\)</span>  We have</p>
+<p>For clarity, we will alter our notation to use <span class="math notranslate nohighlight">\(U_i^j\)</span> to represent the approximation to <span class="math notranslate nohighlight">\(u_i^j\)</span>.  For simplification, we will define <span class="math notranslate nohighlight">\(r=\Delta t/(\Delta x)^2\)</span>  We have (where missing entries in the matrix are all <span class="math notranslate nohighlight">\(0\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -844,9 +845,10 @@ U_N^{j}
 <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
 
+<span class="n">K</span><span class="o">=</span><span class="mf">0.01</span>
 <span class="n">L</span><span class="o">=</span><span class="mi">5</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 
 <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -858,53 +860,68 @@ U_N^{j}
     <span class="k">elif</span> <span class="n">counter</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
         <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">K</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">r</span>
 
-<span class="c1"># A = np.zeros((len,len(x)))</span>
-<span class="c1"># A[0] = r</span>
-<span class="c1"># A[1] = 1-2*r</span>
-<span class="c1"># A[2] = r</span>
 
-<span class="c1"># A[0,0]=0</span>
-<span class="c1"># A[0,1]=0</span>
-<span class="c1"># A[2,-1]=0</span>
-<span class="c1"># A[2,-2]=0</span>
-
-<span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">L</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">L</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Z</span><span class="p">)):</span>
     <span class="n">Z</span><span class="p">[</span><span class="n">counter</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="n">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="mi">49</span><span class="p">,:])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial Condition&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Final State&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial Condition&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=10$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">20</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=20$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">30</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=30$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">40</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=40$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">50</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=50$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">/</span><span class="n">dt</span><span class="p">),:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$t=100$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$U(x,t)$&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.          3.33825246  6.59241759  9.68369159 12.5435057  15.11783464
- 17.37059121 19.28589378 20.8690642  22.14629341 23.16299576 23.98095545
- 24.67444442 25.32555558 26.01904455 26.83700424 27.85370659 29.1309358
- 30.71410622 32.62940879 34.88216536 37.4564943  40.31630841 43.40758241
- 46.66174754 50.         53.33825244 56.59241754 59.68369142 62.54350513
- 65.1178328  67.37058558 69.28587748 70.86901932 72.1461758  73.16270215
- 73.9802565  74.67285625 75.32210772 76.01188609 76.8227765  77.82660891
- 79.08143069 80.62726153 82.48296285 84.64451899 87.08496118 89.75605797
- 92.59174644 95.51310113]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.99999999999996
+[  0.          26.71631389  51.87961087  74.03445582  91.91444569
+ 104.52178232 111.18996775 111.6256827  105.92721697  94.57829347
+  78.41767415  58.58645752  36.45637921  13.54362079  -8.58645752
+ -28.41767415 -44.57829347 -55.92721697 -61.6256827  -61.18996775
+ -54.52178232 -41.91444569 -24.03445582  -1.87961087  23.28368611
+  50.          76.71631389 101.87961087 124.03445582 141.91444569
+ 154.52178232 161.18996775 161.6256827  155.92721697 144.57829347
+ 128.41767415 108.58645752  86.45637921  63.54362079  41.41354248
+  21.58232585   5.42170653  -5.92721697 -11.6256827  -11.18996775
+  -4.52178232   8.08555431  25.96554418  48.12038913  73.28368611
+ 100.        ]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e2057656d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$U(x,t)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/89bb55fe1a53fcb3337e1bb184bc6a3f0fa93fe1382983356cd8d7b53e5006ad.png" src="../_images/89bb55fe1a53fcb3337e1bb184bc6a3f0fa93fe1382983356cd8d7b53e5006ad.png" />
-<img alt="../_images/a26bcdd099363a9b7a17d34a300c7d0d7281558c735a9f26bd15202012862b24.png" src="../_images/a26bcdd099363a9b7a17d34a300c7d0d7281558c735a9f26bd15202012862b24.png" />
+<img alt="../_images/74feb4ea679941ac85cc48e0a823c65847c89c0fe414808df89ab33ed332674b.png" src="../_images/74feb4ea679941ac85cc48e0a823c65847c89c0fe414808df89ab33ed332674b.png" />
+<img alt="../_images/6688eb35f1a2f66a2a5c737d2b003a2542b79c10344a92af90f2cb1692276c3d.png" src="../_images/6688eb35f1a2f66a2a5c737d2b003a2542b79c10344a92af90f2cb1692276c3d.png" />
 </div>
 </div>
+</section>
+<section id="practice-problems">
+<h2><span class="section-number">1.4. </span>Practice Problems<a class="headerlink" href="#practice-problems" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Measure the runtime as <span class="math notranslate nohighlight">\(\Delta x\)</span> shrinks.  Plot on a log-log scale.  Explain the scaling.  (you may want to read up on <code class="docutils literal notranslate"><span class="pre">timeit</span></code> in python.)</p></li>
+<li><p>The true solution to the differential equation is <span class="math notranslate nohighlight">\(100 x/L + 100 \sin(4 \pi x/L) e^{-K(4 \pi/L)^2t}\)</span>.  Take the solution at <span class="math notranslate nohighlight">\(t=10\)</span> calculate for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>.  Subtract the true solution to get the error.  Plot <span class="math notranslate nohighlight">\(1/N\)</span> times the <span class="math notranslate nohighlight">\(\ell^2\)</span> norm of the error as a function of <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
+<li><p>Modify the calculation to take an initial condition of <span class="math notranslate nohighlight">\(u(x,0) = \frac{100x}{L} + 100\sin\left(\frac{\pi x}{L} \right))\)</span>.  Compare how quickly the solution approaches the final steady state.</p></li>
+<li><p>Modify the calculation to solve <span class="math notranslate nohighlight">\(u_t = K u_{xx} + u_x\)</span>.  Ensure that it remains second order accurate in <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Using the original calculation, increase <span class="math notranslate nohighlight">\(r = \Delta t/(\Delta x)^2\)</span>.  You should see something unusual happen for large enough <span class="math notranslate nohighlight">\(r\)</span>.  Can you determine the value of <span class="math notranslate nohighlight">\(r\)</span> at which the unusual behavior begins (it may help to increase the maximum <span class="math notranslate nohighlight">\(t\)</span> close to the threshold)?
+To help understand this, consider what would happen past this threshod if the vector of <span class="math notranslate nohighlight">\(U_i^j\)</span> had a long sequence of entries <span class="math notranslate nohighlight">\(\ldots, a, -a, a, -a, a, -a, \ldots\)</span> in the middle.</p></li>
+<li><p>If the end at <span class="math notranslate nohighlight">\(x=L\)</span> is insulated, the appropriate boundary condition is <span class="math notranslate nohighlight">\(u_x(L,t)=0\)</span>.  One way to impose this is that <span class="math notranslate nohighlight">\(U_N^{j+1} = U_{N-1}^{j+1}\)</span>.  What is the order of accuracy of this approximation?  How could you modify the matrix <span class="math notranslate nohighlight">\(A\)</span> to ensure this?</p></li>
+<li><p>Consider Laplace’s equation <span class="math notranslate nohighlight">\(u_{xx} + u_{yy} = 0\)</span> in <span class="math notranslate nohighlight">\([-L,L] \times [-L,L]\)</span>.  Set the boundary conditions to be <span class="math notranslate nohighlight">\(u(-L,y)=0\)</span>,  <span class="math notranslate nohighlight">\(u(L,y)=0\)</span>, <span class="math notranslate nohighlight">\(u(x,-L) = x^2-L^2\)</span> and <span class="math notranslate nohighlight">\(u(x,L) = L^2-x^2\)</span>.  Use a similar approach to express <span class="math notranslate nohighlight">\(u_{xx}(x_i,y_j) + u_{yy}(x_i,y_j)\)</span> for interior points.  Identify an appropriate matrix equation.  If you are familiar with the methods, attempt to solve this equation numerically.</p></li>
+<li><p>Modify the algorithm above to use the <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve_banded</span></code> algorithm.  Compare the run times.</p></li>
+<li><p>Find another combination of <span class="math notranslate nohighlight">\(F_{i+1}\)</span>, <span class="math notranslate nohighlight">\(F_i\)</span>, and <span class="math notranslate nohighlight">\(F_{i-1}\)</span> that gives an approximation to <span class="math notranslate nohighlight">\(F_i'\)</span>, or prove there is none.</p></li>
+</ol>
 </section>
 </section>
 
@@ -975,6 +992,7 @@ U_N^{j}
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">1.3. Returning to the PDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">1.4. Practice Problems</a></li>
 </ul>
   </nav></div>
 
