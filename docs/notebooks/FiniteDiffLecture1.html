@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 1 Introduction to Finite Differences &#8212; Numerical Methods for Partial Differential Equations</title>
+    <title>1. Lecture 1 Introduction to Finite Differences &#8212; Numerical Methods for Partial Differential Equations</title>
   
   
   
@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/FiniteDiffLecture1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Numerical Methods for PDEs" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,7 +181,10 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Lecture 1 Introduction to Finite Differences</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -222,6 +224,53 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/joelmiller/FiniteDiff" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/joelmiller/FiniteDiff/issues/new?title=Issue%20on%20page%20%2Fnotebooks/FiniteDiffLecture1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -329,18 +378,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-space">Discretizing space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">Finite Differences</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-first-derivative">Finite Difference Approximations for the First derivative</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">Forward difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">Backward Difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">Central difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-space">1.1. Discretizing space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">1.2. Finite Differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-first-derivative">1.2.1. Finite Difference Approximations for the First derivative</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">1.2.1.1. Forward difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">1.2.1.2. Backward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">1.2.1.3. Central difference</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-second-derivative">Finite Difference Approximations for the Second derivative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-second-derivative">1.2.2. Finite Difference Approximations for the Second derivative</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">Returning to the PDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">1.3. Returning to the PDE</a></li>
 </ul>
             </nav>
         </div>
@@ -353,7 +402,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-1-introduction-to-finite-differences">
-<h1>Lecture 1 Introduction to Finite Differences<a class="headerlink" href="#lecture-1-introduction-to-finite-differences" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1. </span>Lecture 1 Introduction to Finite Differences<a class="headerlink" href="#lecture-1-introduction-to-finite-differences" title="Link to this heading">#</a></h1>
 <p>We will build this lecture around the example PDE</p>
 <div class="math notranslate nohighlight">
 \[
@@ -363,7 +412,7 @@ u_t(x,t) = K u_{xx}(x,t)
 We will use the initial condition</p>
 <div class="math notranslate nohighlight">
 \[
-u(x,0) = g(x) = \frac{100x}{L} + \sin\left(\frac{\pi x}{L}\right)
+u(x,0) = g(x) = \frac{100x}{L} + 10\sin\left(\frac{4\pi x}{L}\right)
 \]</div>
 <p>and boundary conditions</p>
 <div class="amsmath math notranslate nohighlight">
@@ -373,7 +422,7 @@ u(L,t) &amp;= 100
 \end{align*}\]</div>
 <p>When we need to use specific values, we will take <span class="math notranslate nohighlight">\(K=4\)</span> and <span class="math notranslate nohighlight">\(L=5\)</span>.</p>
 <section id="discretizing-space">
-<h2>Discretizing space<a class="headerlink" href="#discretizing-space" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.1. </span>Discretizing space<a class="headerlink" href="#discretizing-space" title="Link to this heading">#</a></h2>
 <p>We will attempt to find the values</p>
 <div class="math notranslate nohighlight">
 \[
@@ -392,7 +441,7 @@ x_i = i \Delta x , \qquad i = 0,1,\ldots, N
 <p>To do this we will use finite differences in order to express the derivatives in the PDE in terms of the different values <span class="math notranslate nohighlight">\(u_j^i\)</span>.</p>
 </section>
 <section id="finite-differences">
-<h2>Finite Differences<a class="headerlink" href="#finite-differences" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.2. </span>Finite Differences<a class="headerlink" href="#finite-differences" title="Link to this heading">#</a></h2>
 <p>We will focus on finite differences in one dimension.  We will take a function <span class="math notranslate nohighlight">\(f(x)\)</span>, and discretize it to have values at a sequence of <span class="math notranslate nohighlight">\(x\)</span> values <span class="math notranslate nohighlight">\(\ldots, x_{i-1}, x_i, x_{i+1}, \ldots\)</span>.</p>
 <p>To set things a bit more formal, we will assume that <span class="math notranslate nohighlight">\(f\)</span> is smooth.  This means that we can differentiate it as many times as we will need in our calculations below and the derivatives are continuous.</p>
 <p>We define</p>
@@ -414,9 +463,9 @@ F_i'' = f''(x_i)
 \]</div>
 <p>in terms of <span class="math notranslate nohighlight">\(F_{i+1}\)</span>, <span class="math notranslate nohighlight">\(F_i\)</span>, and <span class="math notranslate nohighlight">\(F_{i-1}\)</span>.</p>
 <section id="finite-difference-approximations-for-the-first-derivative">
-<h3>Finite Difference Approximations for the First derivative<a class="headerlink" href="#finite-difference-approximations-for-the-first-derivative" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.2.1. </span>Finite Difference Approximations for the First derivative<a class="headerlink" href="#finite-difference-approximations-for-the-first-derivative" title="Link to this heading">#</a></h3>
 <section id="forward-difference">
-<h4>Forward difference<a class="headerlink" href="#forward-difference" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.2.1.1. </span>Forward difference<a class="headerlink" href="#forward-difference" title="Link to this heading">#</a></h4>
 <p>The definition of the derivative</p>
 <div class="math notranslate nohighlight">
 \[
@@ -424,7 +473,7 @@ F_i' \equiv f'(x_i) = \lim_{\Delta x \to 0} \frac{f(x_i+\Delta x) - f(x_i)}{\Del
 \]</div>
 <p>suggests that a good approximation would be</p>
 <div class="math notranslate nohighlight" id="equation-forward-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-forward-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-forward-diff" title="Link to this equation">#</a></span>\[
 F_i' \approx D_+(f(x_i)) \equiv \frac{F_{i+1} - F_i}{\Delta x}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(D_+\)</span> gives the <strong>forward difference</strong> approximation to <span class="math notranslate nohighlight">\(F_i'\)</span>.</p>
@@ -464,7 +513,7 @@ F_i' \approx D_+(f(x_i)) \equiv \frac{F_{i+1} - F_i}{\Delta x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1697f67fd90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e268850c20&gt;
 </pre></div>
 </div>
 <img alt="../_images/cf26f2c379880429d4ac7ac87a5a9035abc27ca1e6942bc164ada795f1c1a135.png" src="../_images/cf26f2c379880429d4ac7ac87a5a9035abc27ca1e6942bc164ada795f1c1a135.png" />
@@ -486,11 +535,11 @@ D_+(f(x_i)) &amp;= \frac{F_{i+1}-F_i}{\Delta x}\\
 <p>where <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x)\)</span> means a neglected term that is order <span class="math notranslate nohighlight">\(\Delta x\)</span>.  We call such an approximation <strong>First Order Accurate</strong>.</p>
 </section>
 <section id="backward-difference">
-<h4>Backward Difference<a class="headerlink" href="#backward-difference" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.2.1.2. </span>Backward Difference<a class="headerlink" href="#backward-difference" title="Link to this heading">#</a></h4>
 <p>We observed that if <span class="math notranslate nohighlight">\(x_{i+1}\)</span> is close enough to <span class="math notranslate nohighlight">\(x_i\)</span>, then the line joining the points at <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> will basically overlap with the tangent curve, and so for small enough <span class="math notranslate nohighlight">\(\Delta x\)</span>, the slope of this line approximates the derivative well.</p>
 <p>This also applies for <span class="math notranslate nohighlight">\(x_{i-1}\)</span>.  So we expect the <strong>backwards difference</strong></p>
 <div class="math notranslate nohighlight" id="equation-backward-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-backward-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-backward-diff" title="Link to this equation">#</a></span>\[
 D_-(f(x_i)) = \frac{F_i - F_{i-1}}{\Delta x}
 \]</div>
 <p>to also be a good approximation to <span class="math notranslate nohighlight">\(F_i'\)</span></p>
@@ -530,15 +579,15 @@ D_-(f(x_i)) = \frac{F_i - F_{i-1}}{\Delta x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1697f8fb390&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e26ab59810&gt;
 </pre></div>
 </div>
-<img alt="../_images/5c0d4904bc84b4745715e882d4802d261dbb056861b13dc416431972c1a09d35.png" src="../_images/5c0d4904bc84b4745715e882d4802d261dbb056861b13dc416431972c1a09d35.png" />
+<img alt="../_images/000f2b07623d4487fc05ff4c4e4c618898a8dc5e650636d17c71821c261fcae3.png" src="../_images/000f2b07623d4487fc05ff4c4e4c618898a8dc5e650636d17c71821c261fcae3.png" />
 </div>
 </div>
 </section>
 <section id="central-difference">
-<h4>Central difference<a class="headerlink" href="#central-difference" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.2.1.3. </span>Central difference<a class="headerlink" href="#central-difference" title="Link to this heading">#</a></h4>
 <p>A common theme in Finite Differences is that using formulae that are symmetric about the desired point gives a better approximation.  In a moment you will see an example.  The key detail is that the error on different sides may cancel.  Let’s make this precise.</p>
 <p>If we use</p>
 <div class="math notranslate nohighlight">
@@ -557,7 +606,7 @@ F_{i-1} &amp;= F_i - (\Delta x) F_i' + \frac{(\Delta x)^2}{2} F_i'' - \frac{(\De
 \end{split}\]</div>
 <p>Simplifying we get</p>
 <div class="math notranslate nohighlight" id="equation-central-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-central-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-central-diff" title="Link to this equation">#</a></span>\[
 \frac{F_{i+1}-F_{i-1}}{2\Delta x}= F_i' + \mathcal{O}((\Delta x)^2)
 \]</div>
 <p>So the Central Difference approximation is <strong>Second Order Accurate</strong></p>
@@ -606,7 +655,9 @@ F_{i-1} &amp;= F_i - (\Delta x) F_i' + \frac{(\Delta x)^2}{2} F_i'' - \frac{(\De
 <p>To get a given small level of error, we can use a much larger step size with the central difference, by orders of magnitude.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_derivative</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">true_derivative</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">x_next</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">dx</span>
@@ -621,29 +672,33 @@ F_{i-1} &amp;= F_i - (\Delta x) F_i' + \frac{(\Delta x)^2}{2} F_i'' - \frac{(\De
 <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Step Size $\Delta x$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error in Derivative&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error in Numerical Derivative Calculation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error in Approximation &#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error in Numerical Derivative of $df(1)/dx$ for given $\Delta x$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-C:\Users\JCMiller\AppData\Local\Temp\ipykernel_26544\1962194613.py:15: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:17: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:17: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+C:\Users\JCMiller\AppData\Local\Temp\ipykernel_32028\214703529.py:17: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.xlabel(&#39;Step Size $\Delta x$&#39;)
+C:\Users\JCMiller\AppData\Local\Temp\ipykernel_32028\214703529.py:19: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  plt.title(&#39;Error in Numerical Derivative of $df(1)/dx$ for given $\Delta x$&#39;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x169038eed50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e26b0f74d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/23e5c18dfac0365862ba2791ae85a0ab63d0cfb39520e94d91c2177f6dd90e89.png" src="../_images/23e5c18dfac0365862ba2791ae85a0ab63d0cfb39520e94d91c2177f6dd90e89.png" />
+<img alt="../_images/b57fa371b9fc08db454418685e6d19a86fe8ed840eeb2d2fb55ae89e521214b6.png" src="../_images/b57fa371b9fc08db454418685e6d19a86fe8ed840eeb2d2fb55ae89e521214b6.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="finite-difference-approximations-for-the-second-derivative">
-<h3>Finite Difference Approximations for the Second derivative<a class="headerlink" href="#finite-difference-approximations-for-the-second-derivative" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.2.2. </span>Finite Difference Approximations for the Second derivative<a class="headerlink" href="#finite-difference-approximations-for-the-second-derivative" title="Link to this heading">#</a></h3>
 <p>To approximate the second derivative we allow ourselves to use all three values <span class="math notranslate nohighlight">\(F_{i+1}\)</span>, <span class="math notranslate nohighlight">\(F_i\)</span>, and <span class="math notranslate nohighlight">\(F_{i-1}\)</span>.  To find a combination that results in <span class="math notranslate nohighlight">\(F_i''\)</span>, we start by writing out their Taylor Series expansions around <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -658,21 +713,149 @@ F_{i+1} + F_{i-1} = 2 F_i + (\Delta x)^2 F_i'' + \frac{(\Delta x)^4}{12} F_i''''
 \]</div>
 <p>Subtracting <span class="math notranslate nohighlight">\(2F_i\)</span> from this and dividing by <span class="math notranslate nohighlight">\((\Delta x)^2\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-second-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-second-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-second-diff" title="Link to this equation">#</a></span>\[
 \frac{F_{i+1}-2F_i + F_{i-1}}{(\Delta x)^2} = F_i'' + \mathcal{O}((\Delta x)^2)
 \]</div>
 </section>
 </section>
 <section id="returning-to-the-pde">
-<h2>Returning to the PDE<a class="headerlink" href="#returning-to-the-pde" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.3. </span>Returning to the PDE<a class="headerlink" href="#returning-to-the-pde" title="Link to this heading">#</a></h2>
 <p>We are now ready to write out the equations for each (interior) grid point.  We have <span class="math notranslate nohighlight">\(u_t = K u_{xx}\)</span>.</p>
-<p>At an interior point <span class="math notranslate nohighlight">\((x_i,t_j)\)</span>, we can approximate the <span class="math notranslate nohighlight">\(t\)</span> derivative using a forward difference.  We treat <span class="math notranslate nohighlight">\(t\)</span> as the only variable that changes, with <span class="math notranslate nohighlight">\(x = x_i\)</span> fixed.</p>
-<p>The derivative is found by subtracting the value of <span class="math notranslate nohighlight">\(u\)</span> at the grid point from the value of <span class="math notranslate nohighlight">\(u\)</span> at the next grid point in the <span class="math notranslate nohighlight">\(t\)</span> direction and dividing by <span class="math notranslate nohighlight">\(\Delta t\)</span>, following <a class="reference internal" href="#equation-forward-diff">()</a>:</p>
+<p>At an interior point <span class="math notranslate nohighlight">\((x_i,t_j)\)</span>, we can approximate the <span class="math notranslate nohighlight">\(t\)</span> derivative using a forward difference.  For the <span class="math notranslate nohighlight">\(t\)</span> derivative, we treat <span class="math notranslate nohighlight">\(u\)</span> as a function of the single variable <span class="math notranslate nohighlight">\(t\)</span>, holding <span class="math notranslate nohighlight">\(x = x_i\)</span> fixed.</p>
+<p>The derivative is found by subtracting the value of <span class="math notranslate nohighlight">\(u\)</span> at the grid point from the value of <span class="math notranslate nohighlight">\(u\)</span> at the next grid point in the <span class="math notranslate nohighlight">\(t\)</span> direction and dividing by <span class="math notranslate nohighlight">\(\Delta t\)</span>, following <a class="reference internal" href="#equation-forward-diff">(1.1)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 u_t(x_i,t_j) = \frac{u_i^{j+1} - u_i^j}{\Delta t} + \mathcal{O}(\Delta t)
 \]</div>
-<p>Now we do the same for the second <span class="math notranslate nohighlight">\(x\)</span> derivative following <a class="reference internal" href="#equation-second-diff">()</a>:</p>
+<p>Now we do the same for the second <span class="math notranslate nohighlight">\(x\)</span> derivative following <a class="reference internal" href="#equation-second-diff">(1.4)</a>.  This time we treat it as a function of the single variable <span class="math notranslate nohighlight">\(x\)</span>, holding <span class="math notranslate nohighlight">\(t=t_j\)</span> fixed.</p>
+<div class="math notranslate nohighlight">
+\[
+u_{xx}(x_i, t_j) = \frac{u_{i+1}^j - 2 u_i^j + u_{i-1}^j}{(\Delta x)^2} +\mathcal{O}(\Delta x^2)
+\]</div>
+<p>As</p>
+<div class="math notranslate nohighlight">
+\[
+u_{t} = K u_{xx}
+\]</div>
+<p>we conclude</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{u_i^{j+1} - u_i^j}{\Delta t} + \mathcal{O}(\Delta t) &amp;= K \left(\frac{u_{i+1}^j - 2 u_i^j + u_{i-1}^j}{(\Delta x)^2} +\mathcal{O}(\Delta x)^2\right)\\
+u_i^{j+1} &amp;= u_i^j + \frac{\Delta t}{(\Delta x)^2} \left(u_{i+1}^j - 2 u_i^j + u_{i-1}^j\right) + \mathcal{O}(\Delta t (\Delta x)^2)
+\end{align*}\]</div>
+<p>Our initial condition gives us <span class="math notranslate nohighlight">\(u_i^0\)</span> for all <span class="math notranslate nohighlight">\(i=0,\ldots, N\)</span>.  From this and the equation above, we can deduce an approximation for <span class="math notranslate nohighlight">\(u_i^{1}\)</span> for all <span class="math notranslate nohighlight">\(i=1,\ldots, N-1\)</span>.  The boundary conditions give us the values for <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>.  Note that due to our constant boundary conditions, we can use the equation <span class="math notranslate nohighlight">\(u_0^1=u_0^0\)</span> and <span class="math notranslate nohighlight">\(u_N^1=u_N^0\)</span>.</p>
+<p>Once we have <span class="math notranslate nohighlight">\(u_i^1\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, we can repeat, getting a new approximation for <span class="math notranslate nohighlight">\(u_i^2\)</span>.  Iterating forward we effectively implement Euler’s method in time.</p>
+<p>For clarity, we will alter our notation to use <span class="math notranslate nohighlight">\(U_i^j\)</span> to represent the approximation to <span class="math notranslate nohighlight">\(u_i^j\)</span>.  For simplification, we will define <span class="math notranslate nohighlight">\(r=\Delta t/(\Delta x)^2\)</span>  We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+U_0^{j+1}\\
+U_1^{j+1}\\
+U_2^{j+1}\\
+U_3^{j+1}\\
+\vdots\\
+\vdots\\
+%U_{N-3}^{j+1}\\
+U_{N-2}^{j+1}\\
+U_{N-1}^{j+1}\\
+U_N^{j+1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 &amp; 0&amp; &amp; &amp;  &amp; &amp; &amp; &amp; &amp; \\
+r &amp;1-2r &amp;r &amp; &amp; &amp; &amp;&amp; &amp; &amp; \\
+&amp; r &amp;1-2r &amp;r &amp; &amp; &amp; &amp;  &amp; &amp; \\
+ &amp; &amp; r &amp;1-2r &amp;r &amp;  &amp; &amp; &amp; &amp; \\
+ &amp; &amp; &amp;  &amp; &amp; \ddots &amp; &amp; &amp; &amp; \\
+ &amp; &amp; &amp;  &amp; \ddots &amp; \ddots &amp;   &amp; &amp;&amp;\\
+ &amp;  &amp;  &amp;  &amp; &amp; r &amp;1-2r &amp; r &amp;  &amp; \\
+ &amp;  &amp;  &amp;  &amp;    &amp;  &amp;r &amp;1-2r &amp; r &amp; \\
+ &amp; &amp;&amp;&amp;  &amp; &amp; &amp;r &amp;1-2r &amp; r\\
+ &amp;  &amp;  &amp;  &amp;   &amp;  &amp;  &amp; &amp;0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+U_0^{j}\\
+U_1^{j}\\
+U_2^{j}\\
+U_3^{j}\\
+\vdots\\
+\vdots\\
+%U_{N-3}^{j}\\
+U_{N-2}^{j}\\
+U_{N-1}^{j}\\
+U_N^{j}
+\end{pmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="n">r</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">L</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">counter</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+
+<span class="c1"># A = np.zeros((len,len(x)))</span>
+<span class="c1"># A[0] = r</span>
+<span class="c1"># A[1] = 1-2*r</span>
+<span class="c1"># A[2] = r</span>
+
+<span class="c1"># A[0,0]=0</span>
+<span class="c1"># A[0,1]=0</span>
+<span class="c1"># A[2,-1]=0</span>
+<span class="c1"># A[2,-2]=0</span>
+
+<span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">L</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Z</span><span class="p">)):</span>
+    <span class="n">Z</span><span class="p">[</span><span class="n">counter</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">Z</span><span class="p">[</span><span class="n">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="mi">49</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial Condition&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Final State&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.          3.33825246  6.59241759  9.68369159 12.5435057  15.11783464
+ 17.37059121 19.28589378 20.8690642  22.14629341 23.16299576 23.98095545
+ 24.67444442 25.32555558 26.01904455 26.83700424 27.85370659 29.1309358
+ 30.71410622 32.62940879 34.88216536 37.4564943  40.31630841 43.40758241
+ 46.66174754 50.         53.33825244 56.59241754 59.68369142 62.54350513
+ 65.1178328  67.37058558 69.28587748 70.86901932 72.1461758  73.16270215
+ 73.9802565  74.67285625 75.32210772 76.01188609 76.8227765  77.82660891
+ 79.08143069 80.62726153 82.48296285 84.64451899 87.08496118 89.75605797
+ 92.59174644 95.51310113]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1e2057656d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/89bb55fe1a53fcb3337e1bb184bc6a3f0fa93fe1382983356cd8d7b53e5006ad.png" src="../_images/89bb55fe1a53fcb3337e1bb184bc6a3f0fa93fe1382983356cd8d7b53e5006ad.png" />
+<img alt="../_images/a26bcdd099363a9b7a17d34a300c7d0d7281558c735a9f26bd15202012862b24.png" src="../_images/a26bcdd099363a9b7a17d34a300c7d0d7281558c735a9f26bd15202012862b24.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -706,6 +889,15 @@ u_t(x_i,t_j) = \frac{u_i^{j+1} - u_i^j}{\Delta t} + \mathcal{O}(\Delta t)
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Numerical Methods for PDEs</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -722,18 +914,18 @@ u_t(x_i,t_j) = \frac{u_i^{j+1} - u_i^j}{\Delta t} + \mathcal{O}(\Delta t)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-space">Discretizing space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">Finite Differences</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-first-derivative">Finite Difference Approximations for the First derivative</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">Forward difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">Backward Difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">Central difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-space">1.1. Discretizing space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">1.2. Finite Differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-first-derivative">1.2.1. Finite Difference Approximations for the First derivative</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">1.2.1.1. Forward difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">1.2.1.2. Backward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">1.2.1.3. Central difference</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-second-derivative">Finite Difference Approximations for the Second derivative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-approximations-for-the-second-derivative">1.2.2. Finite Difference Approximations for the Second derivative</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">Returning to the PDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-the-pde">1.3. Returning to the PDE</a></li>
 </ul>
   </nav></div>
 

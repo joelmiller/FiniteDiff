@@ -7,6 +7,5 @@ options:
   numbered: True
 chapters: 
   - file: notebooks/FiniteDiffIntro
-    sections:
-    - file: notebooks/FiniteDiffLecture1
-    
+  - file: notebooks/FiniteDiffLecture1
+  
