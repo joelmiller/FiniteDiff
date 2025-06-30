@@ -499,9 +499,9 @@ x_i = i \Delta x , \qquad i = 0,1,\ldots, N
 \[\begin{align*}
 F_{i+1} &amp;= f(x_{i+1})\\
 F_i &amp;= f(x_i)\\
-F_{i-1} &amp; f(x_{i-1})
+F_{i-1} &amp;= f(x_{i-1})
 \end{align*}\]</div>
-<p>we will want to work out approximations to</p>
+<p>We will want to work out approximations to</p>
 <div class="math notranslate nohighlight">
 \[
 F_i' = f'(x_i)
@@ -517,10 +517,11 @@ F_i'' = f''(x_i)
 <section id="forward-difference">
 <h4><span class="section-number">1.2.1.1. </span>Forward difference<a class="headerlink" href="#forward-difference" title="Link to this heading">#</a></h4>
 <p>The definition of the derivative</p>
-<div class="math notranslate nohighlight">
-\[
-F_i' \equiv f'(x_i) = \lim_{\Delta x \to 0} \frac{f(x_i+\Delta x) - f(x_i)}{\Delta x}
-\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F_i' \equiv f'(x_i) &amp;= \lim_{\Delta x \to 0} \frac{f(x_i+\Delta x) - f(x_i)}{\Delta x}\\
+&amp;= \lim_{\Delta x \to 0} \frac{F_{i+1}-F_i}{\Delta x}
+\end{align*}\]</div>
 <p>suggests that a good approximation would be</p>
 <div class="math notranslate nohighlight" id="equation-forward-diff">
 <span class="eqno">(1.1)<a class="headerlink" href="#equation-forward-diff" title="Link to this equation">#</a></span>\[
@@ -666,7 +667,8 @@ F_{i-1} &amp;= F_i - (\Delta x) F_i' + \frac{(\Delta x)^2}{2} F_i'' - \frac{(\De
 \end{align*}\]</div>
 <p>When we subtract <span class="math notranslate nohighlight">\(F_{i-1}\)</span> from <span class="math notranslate nohighlight">\(F_{i+1}\)</span> all of the even terms cancel.  We are left</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}= \frac{2(\Delta x)F_i' + \frac{(\Delta x)^3}{3} F_i''' + \cdots}{2\Delta x}\\
+\[\begin{split}
+F_{i+1} - F_{i-1} = 2(\Delta x)F_i' + \frac{(\Delta x)^3}{3} F_i''' + \cdots\\
 \end{split}\]</div>
 <p>Simplifying we get</p>
 <div class="math notranslate nohighlight" id="equation-central-diff">
@@ -841,14 +843,14 @@ U_N^{j+1}
 =
 \begin{pmatrix}
 1 &amp; 0&amp; &amp; &amp;  &amp; &amp; &amp; &amp; &amp; \\
-r &amp;1-2r &amp;r &amp; &amp; &amp; &amp;&amp; &amp; &amp; \\
-&amp; r &amp;1-2r &amp;r &amp; &amp; &amp; &amp;  &amp; &amp; \\
- &amp; &amp; r &amp;1-2r &amp;r &amp;  &amp; &amp; &amp; &amp; \\
+Kr &amp;1-2Kr &amp;Kr &amp; &amp; &amp; &amp;&amp; &amp; &amp; \\
+&amp; Kr &amp;1-2Kr &amp;Kr &amp; &amp; &amp; &amp;  &amp; &amp; \\
+ &amp; &amp; Kr &amp;1-2Kr &amp;Kr &amp;  &amp; &amp; &amp; &amp; \\
  &amp; &amp; &amp;  &amp; &amp; \ddots &amp; &amp; &amp; &amp; \\
  &amp; &amp; &amp;  &amp; \ddots &amp; \ddots &amp;   &amp; &amp;&amp;\\
- &amp;  &amp;  &amp;  &amp; &amp; r &amp;1-2r &amp; r &amp;  &amp; \\
- &amp;  &amp;  &amp;  &amp;    &amp;  &amp;r &amp;1-2r &amp; r &amp; \\
- &amp; &amp;&amp;&amp;  &amp; &amp; &amp;r &amp;1-2r &amp; r\\
+ &amp;  &amp;  &amp;  &amp; &amp; Kr &amp;1-2Kr &amp; Kr &amp;  &amp; \\
+ &amp;  &amp;  &amp;  &amp;    &amp;  &amp;Kr &amp;1-2r &amp; Kr &amp; \\
+ &amp; &amp;&amp;&amp;  &amp; &amp; &amp;Kr &amp;1-2Kr &amp; Kr\\
  &amp;  &amp;  &amp;  &amp;   &amp;  &amp;  &amp; &amp;0 &amp; 1
 \end{pmatrix}
 \begin{pmatrix}
@@ -924,15 +926,15 @@ U_N^{j}
 <h2><span class="section-number">1.4. </span>Practice Problems<a class="headerlink" href="#practice-problems" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Measure the runtime as <span class="math notranslate nohighlight">\(\Delta x\)</span> shrinks.  Plot on a log-log scale.  Explain the scaling.  (you may want to read up on <code class="docutils literal notranslate"><span class="pre">timeit</span></code> in python.)</p></li>
-<li><p>The true solution to the differential equation is <span class="math notranslate nohighlight">\(100 x/L + 100 \sin(4 \pi x/L) e^{-K(4 \pi/L)^2t}\)</span>.  Take the solution at <span class="math notranslate nohighlight">\(t=10\)</span> calculate for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>.  Subtract the true solution to get the error.  Plot <span class="math notranslate nohighlight">\(1/N\)</span> times the <span class="math notranslate nohighlight">\(\ell^2\)</span> norm of the error as a function of <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
+<li><p>The true solution to the differential equation is <span class="math notranslate nohighlight">\(100 x/L + 100 \sin(4 \pi x/L) e^{-K(4 \pi/L)^2t}\)</span>.  Take the solution at <span class="math notranslate nohighlight">\(t=10\)</span> calculate for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>.  Subtract the true solution to get the error.  Plot the <span class="math notranslate nohighlight">\(\ell^2\)</span> norm of the error as a function of <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
 <li><p>Modify the calculation to take an initial condition of <span class="math notranslate nohighlight">\(u(x,0) = \frac{100x}{L} + 100\sin\left(\frac{\pi x}{L} \right))\)</span>.  Compare how quickly the solution approaches the final steady state.</p></li>
 <li><p>Modify the calculation to solve <span class="math notranslate nohighlight">\(u_t = K u_{xx} + u_x\)</span>.  Ensure that it remains second order accurate in <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
-<li><p>Using the original calculation, increase <span class="math notranslate nohighlight">\(r = \Delta t/(\Delta x)^2\)</span>.  You should see something unusual happen for large enough <span class="math notranslate nohighlight">\(r\)</span>.  Can you determine the value of <span class="math notranslate nohighlight">\(r\)</span> at which the unusual behavior begins (it may help to increase the maximum <span class="math notranslate nohighlight">\(t\)</span> close to the threshold)?
-To help understand this, consider what would happen past this threshod if the vector of <span class="math notranslate nohighlight">\(U_i^j\)</span> had a long sequence of entries <span class="math notranslate nohighlight">\(\ldots, a, -a, a, -a, a, -a, \ldots\)</span> in the middle.</p></li>
-<li><p>If the end at <span class="math notranslate nohighlight">\(x=L\)</span> is insulated, the appropriate boundary condition is <span class="math notranslate nohighlight">\(u_x(L,t)=0\)</span>.  One way to impose this is that <span class="math notranslate nohighlight">\(U_N^{j+1} = U_{N-1}^{j+1}\)</span>.  What is the order of accuracy of this approximation?  How could you modify the matrix <span class="math notranslate nohighlight">\(A\)</span> to ensure this?</p></li>
+<li><p>Using the original calculation, increase <span class="math notranslate nohighlight">\(r = \Delta t/(\Delta x)^2\)</span>.  You should see something unusual happen for large enough <span class="math notranslate nohighlight">\(r\)</span>.  Note that <span class="math notranslate nohighlight">\(r\)</span> appears only in the product <span class="math notranslate nohighlight">\(Kr\)</span>.  Can you determine the value of <span class="math notranslate nohighlight">\(Kr\)</span> at which the unusual behavior begins (it may help to increase the maximum <span class="math notranslate nohighlight">\(t\)</span> close to the threshold)? Calculate, by hand, what would happen just above this threshod if the vector of <span class="math notranslate nohighlight">\(U_i^j\)</span> had a long sequence of entries <span class="math notranslate nohighlight">\(\ldots, a, -a, a, -a, a, -a, \ldots\)</span> in the middle.</p></li>
+<li><p>If the end at <span class="math notranslate nohighlight">\(x=L\)</span> is insulated, the appropriate boundary condition is <span class="math notranslate nohighlight">\(u_x(L,t)=0\)</span>.  One way to impose this is that <span class="math notranslate nohighlight">\(U_N^{j+1} = U_{N-1}^{j+1}\)</span>.  What is the order of accuracy of this approximation?  How could you modify the matrix <span class="math notranslate nohighlight">\(A\)</span> to impose this condition?</p></li>
 <li><p>Consider Laplace’s equation <span class="math notranslate nohighlight">\(u_{xx} + u_{yy} = 0\)</span> in <span class="math notranslate nohighlight">\([-L,L] \times [-L,L]\)</span>.  Set the boundary conditions to be <span class="math notranslate nohighlight">\(u(-L,y)=0\)</span>,  <span class="math notranslate nohighlight">\(u(L,y)=0\)</span>, <span class="math notranslate nohighlight">\(u(x,-L) = x^2-L^2\)</span> and <span class="math notranslate nohighlight">\(u(x,L) = L^2-x^2\)</span>.  Use a similar approach to express <span class="math notranslate nohighlight">\(u_{xx}(x_i,y_j) + u_{yy}(x_i,y_j)\)</span> for interior points.  Identify an appropriate matrix equation.  If you are familiar with the methods, attempt to solve this equation numerically.</p></li>
 <li><p>Modify the algorithm above to use the <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve_banded</span></code> algorithm.  Compare the run times.</p></li>
 <li><p>Find another combination of <span class="math notranslate nohighlight">\(F_{i+1}\)</span>, <span class="math notranslate nohighlight">\(F_i\)</span>, and <span class="math notranslate nohighlight">\(F_{i-1}\)</span> that gives an approximation to <span class="math notranslate nohighlight">\(F_i'\)</span>, or prove there is none.</p></li>
+<li><p>Find an approximation to <span class="math notranslate nohighlight">\(F_i''\)</span> using <span class="math notranslate nohighlight">\(F_i\)</span>, <span class="math notranslate nohighlight">\(F_{i+1}\)</span> and <span class="math notranslate nohighlight">\(F_{i+2}\)</span>.  What order accuracy is it?</p></li>
 </ol>
 </section>
 </section>
